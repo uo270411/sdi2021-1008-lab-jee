@@ -34,29 +34,25 @@ public class ServletCarrito extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		HttpSession session = request.getSession();
-
-		HashMap<String, Integer> carrito = (HashMap<String, Integer>) request.getSession().getAttribute("carrito");
-//    			No	hay	carrito,	creamos	uno	y	lo	insertamos	en	sesión
-		if (carrito == null) {
-			carrito = new HashMap<String, Integer>();
-			request.getSession().setAttribute("carrito", carrito);
-		}
-		String producto = request.getParameter("producto");
-		if (producto != null) {
-			insertarEnCarrito(carrito, producto);
-		}
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.println("<HTML>");
-		out.println("<HEAD><TITLE>Tienda	SDI:	carrito</TITLE></HEAD>");
-		out.println("<BODY>");
-		out.println(carritoEnHTML(carrito) + "<br>");
-		out.println("<a	href=\"index.jsp\">Volver</a></BODY></HTML>");
-	}
+	protected	void	doGet(HttpServletRequest	request,	HttpServletResponse	response)	
+			throws	ServletException,	IOException	{
+			HttpSession	session=request.getSession();
+			HashMap<String,Integer>	carrito	=	
+								(HashMap<String,Integer>)	request.getSession().getAttribute("carrito");
+//				No	hay	carrito,	creamos	uno	y	lo	insertamos	en	sesión
+			if	(carrito	==	null)	{
+			carrito	=	new	HashMap<String,Integer>();
+							request.getSession().setAttribute("carrito",	carrito);
+			}
+			String	producto	=	request.getParameter("producto");
+			if	(	producto	!=	null){
+			insertarEnCarrito(carrito,	producto);
+			}
+//				Retornar	la	vista	con	parámetro	"carrito"
+			request.setAttribute("paresCarrito",	carrito);
+			getServletContext().getRequestDispatcher("/vista-carrito.jsp").forward(request,	
+			response);
+			}
 
 	private void insertarEnCarrito(HashMap<String, Integer> carrito, String claveProducto) {
 		if (carrito.get(claveProducto) == null)
