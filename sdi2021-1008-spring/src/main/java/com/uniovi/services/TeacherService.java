@@ -5,35 +5,29 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uniovi.entities.Teacher;
+import com.uniovi.repositories.TeachersRepository;
 
 @Service
 public class TeacherService {
-	private List<Teacher> teachersList = new LinkedList<Teacher>();
-
-	@PostConstruct
-	public void init() {
-		teachersList.add(new Teacher("0", "Miguel", "Rodriguez", "Ciencias"));
-		teachersList.add(new Teacher("1", "Jose", "Martinez", "Ingles"));
-	}
-
-	public List<Teacher> getTeachers() {
-		return teachersList;
-	}
+	@Autowired
+	private TeachersRepository teachersRepository;
+	
 
 	public Teacher getTeacher(String dni) {
-		return teachersList.stream().filter(teacher -> teacher.getDni().equals(dni)).findFirst().get();
+		return teachersRepository.findById(dni).get();
 	}
 
 	
 	public void addTeacher(Teacher teacher) {
-		teachersList.add(teacher);
+		teachersRepository.save(teacher);
 			}
 
 	public void deleteTeacher(String dni) {
-		teachersList.removeIf(teacher -> teacher.getDni().equals(dni));
+		teachersRepository.deleteById(dni);
 	}
 	
 	public String editTeacher(String dni) {
