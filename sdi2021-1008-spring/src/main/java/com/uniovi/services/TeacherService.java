@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uniovi.entities.Teacher;
+import com.uniovi.entities.User;
 import com.uniovi.repositories.TeachersRepository;
+import com.uniovi.validators.SignUpFormValidator;
+import com.uniovi.validators.TeachersValidator;
 
 @Service
 public class TeacherService {
@@ -19,6 +22,10 @@ public class TeacherService {
 
 	public Teacher getTeacher(String dni) {
 		return teachersRepository.findById(dni).get();
+	}
+	
+	public User getTeacherByDni(String dni) {
+		return teachersRepository.findByDni(dni);
 	}
 
 	

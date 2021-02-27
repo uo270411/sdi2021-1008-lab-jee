@@ -3,6 +3,8 @@ package com.uniovi.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.uniovi.entities.Mark;
 import com.uniovi.services.MarksService;
 import com.uniovi.services.UsersService;
+import com.uniovi.validators.AddMarksValidator;
 
 @Controller
 public class MarksController {
@@ -20,6 +23,9 @@ public class MarksController {
 
 	@Autowired
 	private UsersService usersService;
+	
+	@Autowired
+	 private AddMarksValidator addMarksValidator;
 
 	@RequestMapping("/mark/list")
 	public String getList(Model model) {
@@ -28,10 +34,15 @@ public class MarksController {
 	}
 
 	@RequestMapping(value = "/mark/add", method = RequestMethod.POST)
-	public String setMark(@ModelAttribute Mark mark) {
+	public String setMark(@Validated Mark mark, BindingResult result) {
+		addMarksValidator.validate(mark, result);
+		if(result.hasErrors()) {
+			return "redirect:/mark/add";
+		}
 		marksService.addMark(mark);
 		return "redirect:/mark/list";
 	}
+	
 
 	@RequestMapping(value = "/mark/add")
 	public String getMark(Model model) {
