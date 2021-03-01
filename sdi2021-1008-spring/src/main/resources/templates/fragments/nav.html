@@ -34,6 +34,18 @@
 						<li><a href="/user/list" th:text="#{listUsers.message}">Ver
 								Usuarios</a></li>
 					</ul></li>
+				<li id="users-menu" class="dropdown"
+					sec:authorize="hasRole('ROLE_ADMIN')"><a
+					class="deopdown-toggle" data-toggle="dropdown" href="#"
+					th:text="#{teachers.message}"> Gestión de Usuarios <span
+						class="caret"></span>
+				</a>
+					<ul class="dropdown-menu">
+						<li><a href="/user/add" th:text="#{addUser.message}">Agregar
+								usuario</a></li>
+						<li><a href="/user/list" th:text="#{listUsers.message}">Ver
+								Usuarios</a></li>
+					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a id="btnLanguage" href="
