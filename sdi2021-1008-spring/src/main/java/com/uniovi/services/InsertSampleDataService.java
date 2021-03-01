@@ -39,7 +39,7 @@ public class InsertSampleDataService {
 			user5.setRole(rolesService.getRoles()[1]);
 			User user6 = new User("99999988F", "Edward", "Núñez");
 			 user6.setPassword("123456");
-			user6.setRole(rolesService.getRoles()[2]);
+			user6.setRole(rolesService.getRoles()[2]); 
 
 
 		Set user1Marks = new HashSet<Mark>() {
