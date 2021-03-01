@@ -5,15 +5,15 @@
 	<!-- Barra de Navegación superior -->
 	<nav th:replace="fragments/nav" />
 	<div class="container">
-		<h2>Usuarios</h2>
-		<form class="navbar-form" action="/user/list">
+		<h2>Profesores</h2>
+		<form class="navbar-form" action="/teacher/list">
 			<div class="form-group">
 				<input name="searchText" type="text" class="form-control" size="50"
-					placeholder="Buscar por nombre o apellido del alumno">
+					placeholder="Buscar por nombre o apellido del profesor">
 			</div>
 			<button type="submit" class="btn btn-default">Buscar</button>
 		</form>
-		<p>Los usuarios que actualmente figuran en el sistema son los
+		<p>Los profesores que actualmente figuran en el sistema son los
 			siguientes:</p>
 		<div class="table-responsive">
 			<table class="table table-hover">
@@ -30,18 +30,17 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="user : ${usersList}">
-						<td th:text="${user.dni}">71888888X</td>
-						<td th:text="${user.name}">Nombre del alumno</td>
-						<td th:text="${user.lastName}">Apellidos del alumno</td>
-						<td><a th:href="${'/user/details/' + user.id}">detalles</a></td>
-						<td><a th:href="${'/user/edit/' + user.id}">modificar</a></td>
-						<td><a th:href="${'/user/delete/' + user.id}">eliminar</a></td>
+					<tr th:each="teacher : ${teachersList}">
+						<td th:text="${teacher.dni}">71888888X</td>
+						<td th:text="${teacher.name}">Nombre del profesor</td>
+						<td th:text="${teacher.lastName}">Apellidos del profesor</td>
+						<td><a th:href="${'/teacher/details/' + teacher.id}">detalles</a></td>
+						<td><a th:href="${'/teacher/edit/' + teacher.id}">modificar</a></td>
+						<td><a th:href="${'/teacher/delete/' + teacher.id}">eliminar</a></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<footer th:replace="fragments/pagination"/>
 	</div>
 	<footer th:replace="fragments/footer" />
 </body>

@@ -1,6 +1,11 @@
 package com.uniovi.controllers;
 
+import java.util.LinkedList;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -13,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.uniovi.entities.Mark;
 import com.uniovi.entities.User;
 import com.uniovi.services.RolesService;
 import com.uniovi.services.SecurityService;
@@ -31,13 +37,17 @@ public class UsersController {
 	 private SignUpFormValidator signUpFormValidator;
 
 	@RequestMapping("/user/list")
-	public String getListado(Model model, @RequestParam(value="", required=false) String searchText) {
-		model.addAttribute("usersList", usersService.getUsers());
+	public String getListado(Model model, @RequestParam(value="", required=false) String searchText, Pageable pageable) {
+		model.addAttribute("usersList", usersService.getUsers(pageable));
+		Page<User> usersList = new PageImpl<User>(new LinkedList<User>());
 		if(searchText != null && !searchText.isEmpty()) {
-			model.addAttribute("usersList", usersService.searchUsersByNameAndSurname(searchText));
+			usersList = usersService.searchUsersByNameAndSurname(pageable, searchText);
+			model.addAttribute("usersList", usersService.searchUsersByNameAndSurname(pageable, searchText));
 		} else {
-			model.addAttribute("usersList", usersService.getUsers());
+			usersList = usersService.getUsers(pageable); 
+			model.addAttribute("usersList", usersService.getUsers(pageable));
 		}
+		model.addAttribute("page", usersList);
 		return "user/list";
 	}
 

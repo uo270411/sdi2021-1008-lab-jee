@@ -25,9 +25,8 @@ public class UsersService {
 	 * @PostConstruct public void init() { }
 	 */
 
-	public List<User> getUsers() {
-		List<User> users = new ArrayList<User>();
-		usersRepository.findAll().forEach(users::add);
+	public Page<User> getUsers(Pageable pageable) {
+		Page<User> users = usersRepository.findAll(pageable);
 		return users;
 	}
 
@@ -48,10 +47,10 @@ public class UsersService {
 		usersRepository.deleteById(id);
 	}
 	
-	public List<User> searchUsersByNameAndSurname(String searchText) {
-		List<User> users = new ArrayList<User>();
+	public Page<User> searchUsersByNameAndSurname(Pageable pageable, String searchText) {
+		Page<User> users = new PageImpl<User>(new LinkedList<User>());
 		searchText = "%"+searchText+"%";
-		users = usersRepository.searchUsersByNameAndSurname(searchText);
+		users = usersRepository.searchUsersByNameAndSurname(pageable, searchText);
 		return users;
 	}
 }

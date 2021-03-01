@@ -1,12 +1,14 @@
 package com.uniovi.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uniovi.entities.Teacher;
@@ -22,6 +24,12 @@ public class TeachersController {
 
 	@Autowired
 	 private TeachersValidator teachersValidator;
+	
+	@RequestMapping("/teacher/list")
+	public String getListado(Model model, @RequestParam(value="", required=false) String searchText) {
+		model.addAttribute("teachersList", teacherService.getTeachers());
+		return "teacher/list";
+	}
 	
 	@RequestMapping("/teacher/edit/{dni}")
 	public String editTeacher(@PathVariable String dni) {

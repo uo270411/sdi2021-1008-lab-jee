@@ -1,5 +1,6 @@
 package com.uniovi.services;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,6 +19,12 @@ import com.uniovi.validators.TeachersValidator;
 public class TeacherService {
 	@Autowired
 	private TeachersRepository teachersRepository;
+	
+	public List<Teacher> getTeachers() {
+		List<Teacher> teachers = new ArrayList<Teacher>();
+		teachersRepository.findAll().forEach(teachers::add);
+		return teachers;
+	}
 	
 
 	public Teacher getTeacher(String dni) {

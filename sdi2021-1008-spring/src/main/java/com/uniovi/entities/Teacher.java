@@ -11,7 +11,7 @@ public class Teacher {
 	@GeneratedValue
 	private String dni;
 	private String name;
-	private String surname;
+	private String lastName;
 	private String category;
 	public Teacher() {
 		
@@ -20,7 +20,7 @@ public class Teacher {
 		super();
 		this.dni = dni;
 		this.name = name;
-		this.surname = surname;
+		this.lastName = surname;
 		this.category = category;
 	}
 	public String getDni() {
@@ -36,10 +36,10 @@ public class Teacher {
 		this.name = name;
 	}
 	public String getSurname() {
-		return surname;
+		return lastName;
 	}
 	public void setSurname(String surname) {
-		this.surname = surname;
+		this.lastName = surname;
 	}
 	public String getCategory() {
 		return category;
