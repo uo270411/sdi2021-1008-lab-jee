@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SdiEntrega12021100820211014Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SdiEntrega12021100820211014Application.class, args);
+		SpringApplication.run(SdiEntrega12021100820211014Application.class, args); 
 	}
 
 }
