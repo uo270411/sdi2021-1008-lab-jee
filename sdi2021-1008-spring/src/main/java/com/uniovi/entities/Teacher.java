@@ -1,0 +1,51 @@
+package com.uniovi.entities;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class Teacher {
+	
+	@Id
+	@GeneratedValue
+	private String dni;
+	private String name;
+	private String lastName;
+	private String category;
+	public Teacher() {
+		
+	}
+	public Teacher(String dni, String name, String surname, String category) {
+		super();
+		this.dni = dni;
+		this.name = name;
+		this.lastName = surname;
+		this.category = category;
+	}
+	public String getDni() {
+		return dni;
+	}
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getSurname() {
+		return lastName;
+	}
+	public void setSurname(String surname) {
+		this.lastName = surname;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+}
