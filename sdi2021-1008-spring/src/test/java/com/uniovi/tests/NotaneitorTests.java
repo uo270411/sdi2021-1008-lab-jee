@@ -7,7 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.junit.runners.MethodSorters;
 //Ordenamos las pruebas por el nombre del método
 @FixMethodOrder(MethodSorters.NAME_ASCENDING) 
- 
+
 
 public class NotaneitorTests { 
 	// En Windows (Debe ser la versión 65.0.1 y desactivar las actualizacioens
