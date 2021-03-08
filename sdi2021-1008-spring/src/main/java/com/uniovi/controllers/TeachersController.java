@@ -1,6 +1,7 @@
 package com.uniovi.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -16,7 +17,7 @@ import com.uniovi.entities.User;
 import com.uniovi.services.TeacherService;
 import com.uniovi.validators.TeachersValidator;
 
-@RestController
+@Controller
 public class TeachersController {
 
 	@Autowired // Inyectar el servicio
@@ -28,7 +29,7 @@ public class TeachersController {
 	@RequestMapping("/teacher/list")
 	public String getListado(Model model, @RequestParam(value="", required=false) String searchText) {
 		model.addAttribute("teachersList", teacherService.getTeachers());
-		return "teacher/list";
+		return "redirect:/teacher/list";
 	}
 	
 	@RequestMapping("/teacher/edit/{dni}")
