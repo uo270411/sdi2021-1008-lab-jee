@@ -29,7 +29,7 @@ public class PO_PrivateView extends PO_NavView {
 		driver.findElement(boton).click();
 	}
 	
-	static public void countMarks(WebDriver driver, int number) {
+	static public void countElements(WebDriver driver, int number) {
 		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
 				PO_View.getTimeout());
 		assertTrue(elementos.size() == number);

@@ -29,7 +29,7 @@ public class TeachersController {
 	@RequestMapping("/teacher/list")
 	public String getListado(Model model, @RequestParam(value="", required=false) String searchText) {
 		model.addAttribute("teachersList", teacherService.getTeachers());
-		return "redirect:/teacher/list";
+		return "teachers/list";
 	}
 	
 	@RequestMapping("/teacher/edit/{dni}")

@@ -193,7 +193,7 @@ public class NotaneitorTests {
 		// COmprobamos que entramos en la pagina privada de Alumno
 		PO_View.checkElement(driver, "text", "Notas del usuario");
 		// Contamos el número de filas de notas
-		PO_PrivateView.countMarks(driver, 4);
+		PO_PrivateView.countElements(driver, 4);
 		// Ahora nos desconectamos
 		PO_PrivateView.clickOption(driver, "logout", "text", "Identifícate");
 	}
